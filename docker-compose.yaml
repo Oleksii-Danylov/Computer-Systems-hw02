@@ -1,0 +1,19 @@
+version: '3'
+services:
+  python-app:
+    build:
+      context: .
+      dockerfile: BetterDockerfile
+    ports:
+      - "80:8000"
+    depends_on:
+      - test_pg
+
+  test_pg:
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: postgres_db
